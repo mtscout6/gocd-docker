@@ -20,6 +20,10 @@ RUN wget -O /tmp/gocd-agent.deb http://download.go.cd/gocd-deb/go-agent-14.2.0-3
 
 RUN sed -r -i "s/^(GO_SERVER)=(.*)/\1=\$SERVER_PORT_8153_TCP_ADDR/g" /etc/default/go-agent
 
+ADD autoregister.properties /var/lib/go-agent/config/autoregister.properties
+RUN chown go /var/lib/go-agent/config/autoregister.properties
+
 #VOLUME ["/var/lib/go-agent"]
 
+# TODO: Look at using spupervisord to keep the container running
 CMD /usr/lib/jvm/java-7-openjdk-amd64/bin/java -jar /usr/share/go-agent/agent-bootstrapper.jar $SERVER_PORT_8153_TCP_ADDR $SERVER_PORT_8153_TCP_PORT

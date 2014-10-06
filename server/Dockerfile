@@ -18,7 +18,14 @@ RUN wget -O /tmp/gocd-server.deb http://download.go.cd/gocd-deb/go-server-14.2.0
   && rm /tmp/gocd-server.deb \
   && rm -rf /var/lib/apt/lists/*
 
+# GO SERVER PORT
 EXPOSE 8153
+
+# GO SERVER SSL PORT
 EXPOSE 8154
 
+ADD cruise-config.xml /etc/go/cruise-config.xml
+RUN chown go /etc/go/cruise-config.xml
+
+# TODO: Look at using spupervisord to keep the container running
 CMD /etc/init.d/go-server start && tail -f /var/log/go-server/go-server.log
