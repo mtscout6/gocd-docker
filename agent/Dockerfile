@@ -23,10 +23,6 @@ RUN sed -r -i "s/^(GO_SERVER)=(.*)/\1=\$SERVER_PORT_8153_TCP_ADDR/g" /etc/defaul
 ADD autoregister.properties /var/lib/go-agent/config/autoregister.properties
 RUN chown go /var/lib/go-agent/config/autoregister.properties
 
-#ADD agent.sh /usr/share/go-agent/agent.sh
-#RUN chown go /usr/share/go-agent/agent.sh \
-#&& chmod 755 /usr/share/go-agent/agent.sh
-
 ENV DAEMON Y
 
 #VOLUME ["/var/lib/go-agent"]

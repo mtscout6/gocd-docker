@@ -18,6 +18,11 @@ RUN wget -O /tmp/gocd-server.deb http://download.go.cd/gocd-deb/go-server-14.2.0
   && rm /tmp/gocd-server.deb \
   && rm -rf /var/lib/apt/lists/*
 
+# INSTALL PLUGINS
+RUN mkdir -p /var/lib/go-server/plugins/external \
+  && wget -O /var/lib/go-server/plugins/external/go-npm-poller.jar  https://github.com/varchev/go-npm-poller/releases/download/0.2.0/go-npm-poller.jar \
+  && chown go -R /var/lib/go-server
+
 # GO SERVER PORT
 EXPOSE 8153
 
