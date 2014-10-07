@@ -27,5 +27,5 @@ EXPOSE 8154
 ADD cruise-config.xml /etc/go/cruise-config.xml
 RUN chown go /etc/go/cruise-config.xml
 
-# TODO: Look at using spupervisord to keep the container running
+# TODO: Look at using spupervisord to keep the container running, or use something like kubernetes?
 CMD /etc/init.d/go-server start && tail -f /var/log/go-server/go-server.log
